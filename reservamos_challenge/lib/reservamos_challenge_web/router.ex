@@ -20,6 +20,12 @@ defmodule ReservamosChallengeWeb.Router do
     get "/", PageController, :home
   end
 
+  scope "/api", ReservamosChallengeWeb do
+    pipe_through :api
+
+    get "/cities", CityController, :index
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ReservamosChallengeWeb do
   #   pipe_through :api
