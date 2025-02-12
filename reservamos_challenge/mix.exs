@@ -61,7 +61,8 @@ defmodule ReservamosChallenge.MixProject do
       {:phoenix_swagger, "~> 0.8.3"},
       {:ex_json_schema, "~> 0.7"},
       {:poison, "~> 3.0"},
-      {:httpoison, "~> 1.8"}
+      {:httpoison, "~> 1.8"},
+      {:nimble_csv, "~> 1.1"}
     ]
   end
 

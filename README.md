@@ -9,7 +9,8 @@ Instrucciones para ejecutar el proyecto
 ## Descripción del challenge
 
 - Debo crear una REST API, en Elixir Phoenix, que permita al usuario conocer las opciones de hospedaje en las ciudades más populares.
-- Se tiene el endpoint de la Reservamos API, que es la que utilizaré para obtener las coordenadas de las ciudades.
+
+- Se tiene acceso al endpoint de Reservamos API (https://search.reservamos.mx/api/v2/places), que es la que utilizaré para obtener las coordenadas de las ciudades.
 
 El endpoint es un GET, que recibe un parámetro: `q`, el cual es el nombre parcial o completo de una ciudad (en USA o México).
 
@@ -60,16 +61,16 @@ Ejemplo de respuesta:
 
 ## Funcionalidades requeridas
 - [ ] Busqueda de ciudades
-    - [ ] Generar un endpoint que reciba un parametro de texto
+    - [x] Generar un endpoint que reciba un parametro de texto
     - [ ] Obtener las ciudades que concuerden con el parámetro y devolverlas con información de hospedaje.
     - [ ] Mostrar una lista de hospedajes disponibles para cada ciudad, debe mostrar:
         - Título
         - Precio por noche
         - Amenidades (si hay)
         - Ratings
-  - [ ] Filtrado de hospedajes
-    - [ ] Establecer filtros, hay varios parametros que puedes usar para esto, precio es el más basico, agrega los que creas que tienen más valor.
-    - [ ] Cuando se haga una búsqueda de ciudad, solo muestra los hospedajes que cumplen con el criterio.
+- [ ] Filtrado de hospedajes
+  - [ ] Establecer filtros, hay varios parametros que puedes usar para esto, precio es el más basico, agrega los que creas que tienen más valor.
+  - [ ] Cuando se haga una búsqueda de ciudad, solo muestra los hospedajes que cumplen con el criterio.
 
 ## Expectativas
 
