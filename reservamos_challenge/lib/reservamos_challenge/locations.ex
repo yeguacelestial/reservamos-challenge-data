@@ -103,7 +103,33 @@ defmodule ReservamosChallenge.Locations do
   end
 
   def search_cities(query) do
-    from(c in City, where: ilike(c.name, ^"%#{query}%"))
-    |> Repo.all()
+    case call_reservamos_api(query) do
+      {:ok, results} ->
+        filter_cities(results)
+
+      {:error, reason} ->
+        IO.inspect("Error fetching cities: #{reason}")
+        []
+    end
+  end
+
+  defp filter_cities(results) do
+    Enum.filter(results, fn place -> place["result_type"] == "city" end)
+  end
+
+  defp call_reservamos_api(query) do
+    url = "https://search.reservamos.mx/api/v2/places?q=#{URI.encode(query)}"
+    headers = [{"Accept", "application/json"}]
+
+    case HTTPoison.get(url, headers) do
+      {:ok, %HTTPoison.Response{status_code: 201, body: body}} ->
+        {:ok, Jason.decode!(body)}
+
+      {:ok, %HTTPoison.Response{status_code: status_code}} ->
+        {:error, "Request failed with status code #{status_code}"}
+
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        {:error, "Request failed: #{reason}"}
+    end
   end
 end

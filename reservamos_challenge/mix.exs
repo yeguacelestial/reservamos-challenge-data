@@ -60,7 +60,8 @@ defmodule ReservamosChallenge.MixProject do
       {:bandit, "~> 1.5"},
       {:phoenix_swagger, "~> 0.8.3"},
       {:ex_json_schema, "~> 0.7"},
-      {:poison, "~> 3.0"}
+      {:poison, "~> 3.0"},
+      {:httpoison, "~> 1.8"}
     ]
   end
 
