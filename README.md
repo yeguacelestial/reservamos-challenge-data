@@ -8,8 +8,14 @@ Clonar el repositorio con el siguiente comando:
 git clone https://github.com/yeguacelestial/reservamos-challenge-data.git
 ```
 
+Instalar Erlang y Elixir con brew:
+```
+brew install erlang elixir
+```
+
 Entrar a la carpeta del proyecto (reservamos_challenge) e instalar las dependencias con el siguiente comando:
 ```
+cd reservamos_challenge
 mix deps.get
 ```
 
@@ -125,12 +131,32 @@ Ejemplo de respuesta:
     - Una vez que entendí el problema, documenté lo necesario en este archivo, y dividí todo en pequeñas tareas para medir mi progreso y enfoque de una forma más clara (los requerimientos y criterios de evaluación los pasé a checkboxes).
     - Utilicé el LLM de gpt-4o para documentar la API desde Swagger.
     - Dado que he trabajado gran cantidad de proyectos con Python y Django, una de las cosas que me costó entender fue el paradigma de Elixir, el cual es funcional y no orientado a objetos, pero utilicé el siguiente prompt para entender a gran escala los modulos y contextos de Phoenix:
-    ```
-    P: "En los proyectos de Django, normalmente se crean apps para cada modulo del proyecto. ¿Aquí en Phoenix los proyectos serian equivalentes a las apps? ¿o estoy confundido?"
+  
+    **Prompt:** "En los proyectos de Django, normalmente se crean apps para cada modulo del proyecto. ¿Aquí en Phoenix los proyectos serian equivalentes a las apps? ¿o estoy confundido?"
 
-    A: "En Phoenix, los proyectos se organizan en "contexts" o "modules". Cada contexto es una unidad funcional que agrupa funciones relacionadas, generalmente alrededor de un dominio o funcionalidad específica. Los contextos ayudan a mantener el código organizado y a definir límites claros entre diferentes partes de la aplicación.
-    ```
+    **Answer:** "En Phoenix, los proyectos se organizan en 'contexts' o 'modules'. Cada contexto es una unidad funcional que agrupa funciones relacionadas, generalmente alrededor de un dominio o funcionalidad específica. Los contextos ayudan a mantener el código organizado y a definir límites claros entre diferentes partes de la aplicación."
     - Utilicé un agente integrado en Cursor con gpt-4o para probar los endpoints de la API, tanto de Reservamos como la de mi API, y verificar que los datos eran los esperados.
+    - Agregué al archivo .cursorrules los prompts necesarios para el LLM que utilizara tuviera contexto técnico de Elixir y Phoenix.
+    - Analicé el archivo .csv para que el LLM tuviera contexto de los datos que manejaría:
+
+    **Prompt:** "Ok. What could you tell me about the rooms_data.csv file?"
+
+    **Answer:** "The `rooms_data.csv` file appears to contain data related to Airbnb listings. Here's a breakdown of the columns and what they represent:
+
+    - **url:** The URL of the Airbnb listing. This is a direct link to the specific room or property on Airbnb's website.
+    - **title:** The title or name of the listing, which often includes a brief description or highlight of the property.
+    - **price_per_night:** The cost of renting the room or property per night, expressed in the specified currency.
+    - **currency:** The currency in which the price is listed (e.g., MXN for Mexican Pesos).
+    - **city:** The city where the property is located.
+    - **state:** The state or region where the property is located.
+    - **country:** The country where the property is located.
+    - **amenities:** A list of amenities available at the property, such as Wi-Fi, air conditioning, or a private bathroom. This is stored as a string representation of a list.
+    - **rating_cleanliness to rating_value:** These columns represent various ratings given by guests, such as cleanliness, accuracy, check-in experience, communication, location, and value. These ratings are typically on a scale from 1 to 5.
+    - **rating_overall:** The overall rating of the property, which is likely an aggregate of the individual ratings.
+    - **total_reviews:** The total number of reviews the property has received.
+    - **created_at:** The date and time when the listing was created or last updated."
+
 
 ## Notas personales
 - En lugar de usar un CSV local, podría implementarse una base de datos para almacenar los datos de hospedajes y manejarlos desde ahí
+- Hacer pruebas unitarias para validar si un cambio rompe la funcionalidad del endpoint con y sin filtros.
