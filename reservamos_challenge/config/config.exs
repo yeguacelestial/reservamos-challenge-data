@@ -20,7 +20,15 @@ config :reservamos_challenge, ReservamosChallengeWeb.Endpoint,
     layout: false
   ],
   pubsub_server: ReservamosChallenge.PubSub,
-  live_view: [signing_salt: "LYIr5KNB"]
+  live_view: [signing_salt: "LYIr5KNB"],
+  swagger: [
+    swagger_files: %{
+      "priv/static/swagger.json" => [
+        router: ReservamosChallengeWeb.Router,
+        endpoint: ReservamosChallengeWeb.Endpoint
+      ]
+    }
+  ]
 
 # Configures the mailer
 #
@@ -60,6 +68,14 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :reservamos_challenge, :phoenix_swagger,
+     swagger_files: %{
+    "priv/static/swagger.json" => [
+      router: ReservamosChallengeWeb.Router,
+      endpoint: ReservamosChallengeWeb.Endpoint
+    ]
+  }
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -26,6 +26,10 @@ defmodule ReservamosChallengeWeb.Router do
     get "/cities", CityController, :index
   end
 
+  scope "/api/swagger" do
+    forward "/", PhoenixSwagger.Plug.SwaggerUI, otp_app: :reservamos_challenge, swagger_file: "swagger.json"
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ReservamosChallengeWeb do
   #   pipe_through :api
