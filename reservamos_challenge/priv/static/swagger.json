@@ -18,13 +18,55 @@
           {
             "type": "string",
             "required": false,
-            "name": "query",
+            "name": "city",
             "in": "query",
             "description": "Nombre de la ciudad"
+          },
+          {
+            "type": "number",
+            "required": false,
+            "name": "min_price",
+            "in": "query",
+            "description": "Precio mínimo por noche"
+          },
+          {
+            "type": "number",
+            "required": false,
+            "name": "max_price",
+            "in": "query",
+            "description": "Precio máximo por noche"
+          },
+          {
+            "type": "number",
+            "required": false,
+            "name": "min_rating",
+            "in": "query",
+            "description": "Calificación mínima"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "amenities",
+            "in": "query",
+            "description": "Lista de amenidades separadas por comas"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "state",
+            "in": "query",
+            "description": "Estado de la ciudad"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "name": "country",
+            "in": "query",
+            "description": "País de la ciudad"
           }
         ],
         "operationId": "ReservamosChallengeWeb.CityController.index",
-        "description": "Lista de ciudades"
+        "description": "Lista de ciudades con opciones de filtrado"
       }
     }
   },
@@ -43,8 +85,7 @@
         "country": {
           "type": "string"
         }
-      },
-      "required": ["id", "name", "country"]
+      }
     }
   },
   "host": "localhost:4000",

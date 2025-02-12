@@ -8,8 +8,14 @@ defmodule ReservamosChallengeWeb.CityController do
 
   swagger_path :index do
     get "/api/cities"
-    description "Lista de ciudades"
-    parameter :query, :query, :string, "Nombre de la ciudad", required: false
+    description "Lista de ciudades con opciones de filtrado"
+    parameter :city, :query, :string, "Nombre de la ciudad", required: false
+    parameter :min_price, :query, :number, "Precio mínimo por noche", required: false
+    parameter :max_price, :query, :number, "Precio máximo por noche", required: false
+    parameter :min_rating, :query, :number, "Calificación mínima", required: false
+    parameter :amenities, :query, :string, "Lista de amenidades separadas por comas", required: false
+    parameter :state, :query, :string, "Estado de la ciudad", required: false
+    parameter :country, :query, :string, "País de la ciudad", required: false
     response 200, "Success", :City
   end
 
@@ -27,13 +33,19 @@ defmodule ReservamosChallengeWeb.CityController do
   end
 
   def index(conn, params) do
-    query = Map.get(params, "query", "")
+    city = Map.get(params, "city", "")
     min_price = Map.get(params, "min_price", nil) |> parse_float()
     max_price = Map.get(params, "max_price", nil) |> parse_float()
     min_rating = Map.get(params, "min_rating", nil) |> parse_float()
     amenities_filter = Map.get(params, "amenities", "") |> String.split(",")
+    state = Map.get(params, "state", "")
+    country = Map.get(params, "country", "")
 
-    cities = Locations.search_cities(query)
+    cities = Locations.search_cities(city)
+    |> Enum.filter(fn city ->
+      (state == "" or city["state"] == state) and
+      (country == "" or city["country"] == country)
+    end)
     rooms_data = load_rooms_data()
 
     enriched_cities = Enum.map(cities, fn city ->

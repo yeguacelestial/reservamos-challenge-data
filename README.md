@@ -3,7 +3,29 @@ Reservamos: API - Data challenge
 
 ## Instrucciones
 
-Instrucciones para ejecutar el proyecto
+Clonar el repositorio con el siguiente comando:
+```
+git clone https://github.com/yeguacelestial/reservamos-challenge-data.git
+```
+
+Entrar a la carpeta del proyecto (reservamos_challenge) e instalar las dependencias con el siguiente comando:
+```
+mix deps.get
+```
+
+Iniciar el servidor con el siguiente comando:
+```
+mix phx.server
+```
+
+La API estará disponible en `http://localhost:4000`.
+
+Se puede probar el endpoint desde Swagger en `http://localhost:4000/api/swagger/`.
+
+
+
+
+
 
 
 ## Descripción del challenge
@@ -72,7 +94,6 @@ Ejemplo de respuesta:
   - [x] Establecer filtros, hay varios parametros que puedes usar para esto, precio es el más basico, agrega los que creas que tienen más valor.
   - [x] [Extra] Si el valor de un filtro de un registro es `nil`, considerarlo como `0`.
   - [x] Cuando se haga una búsqueda de ciudad, solo muestra los hospedajes que cumplen con el criterio.
-  - [ ] Crear un endpoint para obtener los datos de un hospedaje específico.
 
 ## Expectativas
 
@@ -92,16 +113,24 @@ Ejemplo de respuesta:
     - Implementé filtros adicionales para los hospedajes basados en parámetros como precio, calificación y amenidades. Estos filtros se aplican dinámicamente según los parámetros proporcionados. Es decir, si el usuario no proporciona un parámetro, no se aplica el filtro.
     - Aunque aún no lo he implementado completamente, planeo optimizar el rendimiento del API mediante la implementación de buenas prácticas, como el manejo adecuado de errores y validaciones en los endpoints.
   - [x] Por favor documenta brevemente tus decisiones de diseño y argumentalas.
-    - Mi experiencia es mayormente con Python y Django, pero vi esta como una oportunidad de aprender a utilizar Elixir y Phoenix, pues es otro paradigma de programación que me ha permitido aprender algunas cosas nuevas mientras desarrollé el challenge.
-    - En cuanto a la limpieza de los datos, observando el dataset noté que las amenidades vienen en formato de lista de strings. En cuanto lo noté, me di cuenta que no era una buena idea, pues no me permitiría hacer búsquedas eficientes por amenidades. Por lo que decidí normalizar los datos para que sean más fáciles de manejar.
+    - En cuanto a la limpieza de los datos, observando el dataset noté que las amenidades vienen en formato de lista de strings. En cuanto lo noté, me di cuenta que no era una buena idea, pues no me permitiría hacer búsquedas eficientes por amenidades; en este punto decidi que lo mejor sería normalizar los datos antes de procesarlos para que sean más fáciles de manejar.
 
 ### IA (Opcional):
 - Usar herramientas de IA para:
   - Resolver problemas técnicos durante el desarrollo.
   - Generar fragmentos de código o ejemplos de lógica.
   - Documentar el proceso de desarrollo.
-  - [ ] Documentar claramente en el README.md cómo y donde utilizaste IA, incluyendo tus mejores prompts y resultados obtenidos.
-  
+  - [x] Documentar claramente en el README.md cómo y donde utilizaste IA, incluyendo tus mejores prompts y resultados obtenidos.
+    - Antes de saltar a la programación, leí todo el PDF del challenge para entender el problema y los criterios de evaluación.
+    - Una vez que entendí el problema, documenté lo necesario en este archivo, y dividí todo en pequeñas tareas para medir mi progreso y enfoque de una forma más clara (los requerimientos y criterios de evaluación los pasé a checkboxes).
+    - Utilicé el LLM de gpt-4o para documentar la API desde Swagger.
+    - Dado que he trabajado gran cantidad de proyectos con Python y Django, una de las cosas que me costó entender fue el paradigma de Elixir, el cual es funcional y no orientado a objetos, pero utilicé el siguiente prompt para entender a gran escala los modulos y contextos de Phoenix:
+    ```
+    P: "En los proyectos de Django, normalmente se crean apps para cada modulo del proyecto. ¿Aquí en Phoenix los proyectos serian equivalentes a las apps? ¿o estoy confundido?"
+
+    A: "En Phoenix, los proyectos se organizan en "contexts" o "modules". Cada contexto es una unidad funcional que agrupa funciones relacionadas, generalmente alrededor de un dominio o funcionalidad específica. Los contextos ayudan a mantener el código organizado y a definir límites claros entre diferentes partes de la aplicación.
+    ```
+    - Utilicé un agente integrado en Cursor con gpt-4o para probar los endpoints de la API, tanto de Reservamos como la de mi API, y verificar que los datos eran los esperados.
+
 ## Notas personales
-- Al usar LLMs, debe utilizarse el código más limpio, legible y consistente posible, que respete las reglas del lenguaje y naturaleza de las estructuras de datos.
-- Algunos datos en el dataset pueden ser incorrectos, y debo ver alguna forma de limpiar esos datos al momento de mostrarlos en la respuesta.
+- En lugar de usar un CSV local, podría implementarse una base de datos para almacenar los datos de hospedajes y manejarlos desde ahí
