@@ -68,24 +68,31 @@ Ejemplo de respuesta:
         - Precio por noche
         - Amenidades (si hay)
         - Ratings
-- [ ] Filtrado de hospedajes
-  - [ ] Establecer filtros, hay varios parametros que puedes usar para esto, precio es el más basico, agrega los que creas que tienen más valor.
-  - [ ] Cuando se haga una búsqueda de ciudad, solo muestra los hospedajes que cumplen con el criterio.
+- [x] Filtrado de hospedajes
+  - [x] Establecer filtros, hay varios parametros que puedes usar para esto, precio es el más basico, agrega los que creas que tienen más valor.
+  - [ ] [Extra] Si el valor de un filtro de un registro es `nil`, considerarlo como `0`.
+  - [x] Cuando se haga una búsqueda de ciudad, solo muestra los hospedajes que cumplen con el criterio.
 
 ## Expectativas
 
 ### Backend
-- [ ] Implementar un API REST utilizando Phoenix Framework o cualquier otro framework de mi preferencia que:
-  - [ ] Consuma los datos de la API de Reservamos para buscar ciudades.
-  - [ ] Relacione la información obtenida con el dataset de hospedajes
-  - [ ] Entregue información filtrada y organizada según los requerimientos.
-- [ ] Permitir el filtrado de hospedajes por parámetros como precio, amenidades y calificación mínima.
-- [ ] Optimizar el rendimiento del API mediante implementación de buenas prácticas (como manejo adecuado de errores, y validaciones en los endpoints).
+- [x] Implementar un API REST utilizando Phoenix Framework o cualquier otro framework de mi preferencia que:
+  - [x] Consuma los datos de la API de Reservamos para buscar ciudades.
+  - [x] Relacione la información obtenida con el dataset de hospedajes
+  - [x] Entregue información filtrada y organizada según los requerimientos.
+- [x] Permitir el filtrado de hospedajes por parámetros como precio, amenidades y calificación mínima.
+- [x] Optimizar el rendimiento del API mediante implementación de buenas prácticas (como manejo adecuado de errores, y validaciones en los endpoints).
 
 ### Manejo de datos
 - Es importante ver cual es el proceso para manejar el data set.
-  - [ ] Queremos ver la estrategia que tomas para manejar esta información y cruzarla con la API.
-  - [ ] Por favor documenta brevemente tus decisiones de diseño y argumentalas.
+  - [x] Queremos ver la estrategia que tomas para manejar esta información y cruzarla con la API.
+    - Para la carga del CSV, utilicé la librería de `NimbleCSV` para cargar y parsear el dataset de hospedajes desde el CSV localmente.
+    - Realicé solicitudes GET al endpoint de Reservamos, pasando el nombre de la ciudad como parámetro para obtener las coordenadas y otros detalles relevantes de las ciudades.
+    - Implementé filtros adicionales para los hospedajes basados en parámetros como precio, calificación y amenidades. Estos filtros se aplican dinámicamente según los parámetros proporcionados. Es decir, si el usuario no proporciona un parámetro, no se aplica el filtro.
+    - Aunque aún no lo he implementado completamente, planeo optimizar el rendimiento del API mediante la implementación de buenas prácticas, como el manejo adecuado de errores y validaciones en los endpoints.
+  - [x] Por favor documenta brevemente tus decisiones de diseño y argumentalas.
+    - Mi experiencia es mayormente con Python y Django, pero vi esta como una oportunidad de aprender a utilizar Elixir y Phoenix, pues es otro paradigma de programación que me ha permitido aprender algunas cosas nuevas mientras desarrollé el challenge.
+    - En cuanto a la limpieza de los datos, observando el dataset noté que las amenidades vienen en formato de lista de strings. En cuanto lo noté, me di cuenta que no era una buena idea, pues no me permitiría hacer búsquedas eficientes por amenidades. Por lo que decidí normalizar los datos para que sean más fáciles de manejar.
 
 ### IA (Opcional):
 - Usar herramientas de IA para:
@@ -97,3 +104,8 @@ Ejemplo de respuesta:
 ## Notas personales
 - Al usar LLMs, debe utilizarse el código más limpio, legible y consistente posible, que respete las reglas del lenguaje y naturaleza de las estructuras de datos.
 - Algunos datos en el dataset pueden ser incorrectos, y debo ver alguna forma de limpiar esos datos al momento de mostrarlos en la respuesta.
+
+## Estrategia de Manejo de Datos
+
+### Carga de Datos
+Para la carga del CSV, utilicé la librería `NimbleCSV` para cargar y parsear el dataset de hospedajes desde un archivo CSV de manera local. Este archivo contiene información detallada sobre los hospedajes, incluyendo título, precio, amenidades, calificaciones, y más.
