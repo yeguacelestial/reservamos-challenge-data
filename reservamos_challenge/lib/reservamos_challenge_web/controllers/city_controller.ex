@@ -22,7 +22,7 @@ defmodule ReservamosChallengeWeb.CityController do
 
   defp normalize_row(row) do
     Enum.map(row, fn value ->
-      if value == "", do: "0", else: value
+      if value == "", do: 0, else: value
     end)
   end
 

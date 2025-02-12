@@ -70,8 +70,9 @@ Ejemplo de respuesta:
         - Ratings
 - [x] Filtrado de hospedajes
   - [x] Establecer filtros, hay varios parametros que puedes usar para esto, precio es el más basico, agrega los que creas que tienen más valor.
-  - [ ] [Extra] Si el valor de un filtro de un registro es `nil`, considerarlo como `0`.
+  - [x] [Extra] Si el valor de un filtro de un registro es `nil`, considerarlo como `0`.
   - [x] Cuando se haga una búsqueda de ciudad, solo muestra los hospedajes que cumplen con el criterio.
+  - [ ] Crear un endpoint para obtener los datos de un hospedaje específico.
 
 ## Expectativas
 
