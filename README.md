@@ -62,7 +62,7 @@ Ejemplo de respuesta:
 ## Funcionalidades requeridas
 - [ ] Busqueda de ciudades
     - [x] Generar un endpoint que reciba un parametro de texto
-    - [ ] Obtener las ciudades que concuerden con el parámetro y devolverlas con información de hospedaje.
+    - [x] Obtener las ciudades que concuerden con el parámetro y devolverlas con información de hospedaje.
     - [ ] Mostrar una lista de hospedajes disponibles para cada ciudad, debe mostrar:
         - Título
         - Precio por noche
