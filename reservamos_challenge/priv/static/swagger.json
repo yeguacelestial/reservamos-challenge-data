@@ -1,10 +1,55 @@
 {
-  "paths": {},
+  "paths": {
+    "/api/cities": {
+      "get": {
+        "tags": [
+          "City"
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/City"
+            },
+            "description": "Success"
+          }
+        },
+        "parameters": [
+          {
+            "type": "string",
+            "required": false,
+            "name": "query",
+            "in": "query",
+            "description": "Nombre de la ciudad"
+          }
+        ],
+        "operationId": "ReservamosChallengeWeb.CityController.index",
+        "description": "Lista de ciudades"
+      }
+    }
+  },
   "swagger": "2.0",
-  "definitions": {},
+  "definitions": {
+    "City": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "name", "country"]
+    }
+  },
   "host": "localhost:4000",
   "info": {
-    "title": "<enter your title>",
+    "title": "Reservamos Challenge",
     "version": "0.0.1"
   }
 }

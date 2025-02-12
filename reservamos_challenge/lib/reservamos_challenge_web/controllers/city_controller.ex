@@ -11,7 +11,8 @@ defmodule ReservamosChallengeWeb.CityController do
     response 200, "Success", :City
   end
 
-  def index(conn, %{"query" => query}) do
+  def index(conn, params) do
+    query = Map.get(params, "query", "")
     cities = Locations.search_cities(query)
     json(conn, cities)
   end
