@@ -94,6 +94,6 @@ Ejemplo de respuesta:
   - Documentar el proceso de desarrollo.
   - [ ] Documentar claramente en el README.md cómo y donde utilizaste IA, incluyendo tus mejores prompts y resultados obtenidos.
   
-## Consideraciones para los LLMs
-- Debe utilizarse el código más limpio, legible y consistente posible, que respete las reglas del lenguaje y de ingeniería de software.
-- Algunos datos en el dataset pueden ser incorrectos, y debo manejar esos casos con Data Science o Machine Learning.
+## Notas personales
+- Al usar LLMs, debe utilizarse el código más limpio, legible y consistente posible, que respete las reglas del lenguaje y naturaleza de las estructuras de datos.
+- Algunos datos en el dataset pueden ser incorrectos, y debo ver alguna forma de limpiar esos datos al momento de mostrarlos en la respuesta.
