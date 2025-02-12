@@ -17,6 +17,13 @@ defmodule ReservamosChallengeWeb.CityController do
     "rooms_data.csv"
     |> File.stream!()
     |> CSV.parse_stream(headers: true)
+    |> Enum.map(&normalize_row/1)
+  end
+
+  defp normalize_row(row) do
+    Enum.map(row, fn value ->
+      if value == "", do: "0", else: value
+    end)
   end
 
   def index(conn, params) do

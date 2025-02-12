@@ -104,8 +104,3 @@ Ejemplo de respuesta:
 ## Notas personales
 - Al usar LLMs, debe utilizarse el código más limpio, legible y consistente posible, que respete las reglas del lenguaje y naturaleza de las estructuras de datos.
 - Algunos datos en el dataset pueden ser incorrectos, y debo ver alguna forma de limpiar esos datos al momento de mostrarlos en la respuesta.
-
-## Estrategia de Manejo de Datos
-
-### Carga de Datos
-Para la carga del CSV, utilicé la librería `NimbleCSV` para cargar y parsear el dataset de hospedajes desde un archivo CSV de manera local. Este archivo contiene información detallada sobre los hospedajes, incluyendo título, precio, amenidades, calificaciones, y más.
